@@ -1,6 +1,28 @@
 body {
-    background-image: url('imagem/casa.jpg'); /* Corrija o caminho */
-    background-size: cover; /* Faz com que a imagem cubra o elemento */
-    background-repeat: no-repeat; /* Não repete a imagem */
-    background-position: center; /* Centraliza a imagem */
+    background-image: url('logo-removebg-preview.png'); /* Corrija o caminho */
+    background-repeat: no-repeat; 
+    background-position: center;
+    
+
 }
+        body, html {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+        }
+        .btn-primary {
+            padding: 20px 50px; /* Aumentando o padding */
+            font-size: 1.5em;
+            border-radius: 30px;
+            background-color: #007bff;
+            border: none;
+            transition: background-color 0.3s ease;
+            margin-top: 500px; /* Ajusta a margem superior para 500 pixels */
+        }
+        
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
