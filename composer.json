@@ -1,0 +1,18 @@
+{
+    "name": "nodestudio/composer",
+    "description": "Teste",
+    "require": {
+        "dompdf/dompdf": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nodestudio\\Composer\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vitor",
+            "email": "vitorfontes0203@gmail.com"
+        }
+    ]
+}
