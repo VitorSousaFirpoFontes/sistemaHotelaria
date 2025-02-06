@@ -1,66 +1,57 @@
 body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
     background-color: #f8f9fa;
-    font-family: 'Arial', sans-serif;
 }
 
-.table-container {
+.booking-table {
+    width: 100%;
+    border-collapse: collapse;
     margin: 20px auto;
-    max-width: 800px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+.booking-table th,
+.booking-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
     text-align: center;
-    color: #333;
-    margin-bottom: 20px;
 }
 
-/* Estilo da tabela */
-.table {
-    border-radius: 8px;
-    overflow: hidden; /* Para bordas arredondadas no topo */
-}
-
-/* Estilo do cabeçalho */
-.table thead th {
+.booking-table th {
     background-color: #4CAF50;
     color: white;
-    font-weight: bold;
 }
 
-/* Estilo das linhas da tabela */
-.table tbody tr {
-    transition: background-color 0.3s ease;
+.booking-table td {
+    height: 50px;
 }
 
-/* Efeito de hover */
-.table tbody tr:hover {
-    background-color: #f1f1f1; /* Cor de fundo ao passar o mouse */
+.pre-reserved {
+    background-color: #ffeeba;
 }
 
-/* Estilo das células */
-.table td {
-    vertical-align: middle; /* Alinhamento vertical */
+.reserved {
+    background-color: #17a2b8;
+    color: white;
 }
 
-/* Bordas das células */
-.table-bordered {
-    border: 1px solid #dee2e6;
+.hosted {
+    background-color: #007bff;
+    color: white;
 }
 
-.table-bordered td, .table-bordered th {
-    border: 1px solid #dee2e6;
+.finished {
+    background-color: #28a745;
+    color: white;
 }
 
-/* Estilo responsivo */
-.table-responsive {
-    overflow-x: auto; /* Para permitir rolagem em telas menores */
+.blocked {
+    background-color: #6c757d;
+    color: white;
 }
 
-/* Estilo adicional */
-.table td, .table th {
-    padding: 15px; /* Espaçamento interno */
+.pending {
+    background-color: #dc3545;
+    color: white;
 }

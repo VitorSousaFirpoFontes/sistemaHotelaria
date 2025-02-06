@@ -29,8 +29,8 @@
             </div>
 
             <div class="form-group">
-                <label for="numero_quartos">Número de quartos:</label>
-                <input class="form-control" type="number" id="numero_quartos" name="numero_quartos" required min="1" max="10">
+                <label for="numero_quartos">Número do quarto:</label>
+                <input class="form-control" type="number" id="numero_do_quarto" name="numero_do_quarto" required min="1" max="10">
             </div>
 
             <div class="form-group">
@@ -51,18 +51,6 @@
             <button type="submit" class="btn btn-primary btn-block">Cadastrar Reserva</button>
         </form>
     </section>
-
-    <script>
-        document.getElementById('data_checkout').addEventListener('change', function() {
-            const checkin = new Date(document.getElementById('data_checkin').value);
-            const checkout = new Date(this.value);
-            
-            if (checkout <= checkin) {
-                alert('A data de Check-out deve ser posterior à data de Check-in.');
-                this.value = ''; // Limpa o campo se a validação falhar
-            }
-        });
-    </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
