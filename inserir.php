@@ -16,12 +16,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome_cliente = $_POST['nome_cliente'] ?? '';
     $data_checkin = $_POST['data_checkin'] ?? '';
     $data_checkout = $_POST['data_checkout'] ?? '';
-    $numero_quartos = $_POST['numero_quartos'] ?? '';
+    $numero_quarto = $_POST['numero_quarto'] ?? '';
     $tipo_quarto = $_POST['tipo_quarto'] ?? '';
     $observacoes = $_POST['observacoes'] ?? '';
 
     // Prepara a consulta SQL para inserir os dados
-    $sql = "INSERT INTO Reservas (nome_cliente, data_checkin, data_checkout, numero_quartos, tipo_quarto, observacoes) VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO Reservas (nome_cliente, data_checkin, data_checkout, numero_quarto, tipo_quarto, observacoes) VALUES (?, ?, ?, ?, ?, ?)";
     
     // Usa prepared statement para evitar SQL injection
     $stmt = $conn->prepare($sql);
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Usa bind_param para associar os parâmetros
-    $stmt->bind_param("ssssss", $nome_cliente, $data_checkin, $data_checkout, $numero_quartos, $tipo_quarto, $observacoes);
+    $stmt->bind_param("ssssss", $nome_cliente, $data_checkin, $data_checkout, $numero_quarto, $tipo_quarto, $observacoes);
 
     // Executa a consulta e verifica o resultado
     if ($stmt->execute()) {

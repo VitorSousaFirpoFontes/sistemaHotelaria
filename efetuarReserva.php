@@ -30,7 +30,7 @@
 
             <div class="form-group">
                 <label for="numero_quartos">Número do quarto:</label>
-                <input class="form-control" type="number" id="numero_do_quarto" name="numero_do_quarto" required min="1" max="10">
+                <input class="form-control" type="number" id="numero_quarto" name="numero_quarto" required min="1" max="10">
             </div>
 
             <div class="form-group">
