@@ -1,57 +1,98 @@
+/* Estilos gerais para a tabela */
+.table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    background-color: #f9f9f9 !important;
+}
+
+.table th, .table td {
+    padding: 12px !important;
+    text-align: center !important;
+    border: 1px solid #ddd !important;
+}
+
+.table td {
+    background-color: #f9f9f9 !important;
+    font-size: 14px !important;
+    color: #333 !important;
+}
+
+.table td strong {
+    color: #333 !important;
+}
+
+/* Estilo para o cabeçalho com os dias */
+.table th {
+    background-color: #000 !important; /* Cor de fundo preta */
+    color: white !important; /* Cor do texto branca */
+    font-weight: bold !important;
+}
+
+/* Cor para dias reservados */
+.table td[style*="background-color: #ffd700"] {
+    background-color: #ffcc00 !important;
+    color: #333 !important;
+    font-weight: bold !important;
+}
+
+/* Estilo de cabeçalho e filtro */
+.filtros {
+    margin-bottom: 20px !important;
+}
+
+.filtros select {
+    padding: 8px !important;
+    font-size: 16px !important;
+    margin-right: 15px !important;
+    border-radius: 5px !important;
+    border: 1px solid #ccc !important;
+}
+
+/* Botão de voltar */
+.btn-primary {
+    margin-top: 20px !important;
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3 !important;
+    border-color: #0056b3 !important;
+}
+
+/* Adicionando um pouco de sombra para a tabela */
+.table-bordered {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Estilo para a página */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f9fa;
+    font-family: Arial, sans-serif !important;
+    background-color: #f4f7f6 !important;
+    color: #333 !important;
+    padding: 20px !important;
 }
 
-.booking-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px auto;
+h1 {
+    font-size: 28px !important;
+    color: #333 !important;
+    margin-bottom: 30px !important;
 }
 
-.booking-table th,
-.booking-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
+.container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
 }
 
-.booking-table th {
-    background-color: #4CAF50;
-    color: white;
+/* Tornar o botão de filtros mais atraente */
+.filtros label {
+    font-size: 16px !important;
+    color: #333 !important;
+    margin-right: 10px !important;
 }
 
-.booking-table td {
-    height: 50px;
-}
-
-.pre-reserved {
-    background-color: #ffeeba;
-}
-
-.reserved {
-    background-color: #17a2b8;
-    color: white;
-}
-
-.hosted {
-    background-color: #007bff;
-    color: white;
-}
-
-.finished {
-    background-color: #28a745;
-    color: white;
-}
-
-.blocked {
-    background-color: #6c757d;
-    color: white;
-}
-
-.pending {
-    background-color: #dc3545;
-    color: white;
+.filtros form {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
 }

@@ -1,5 +1,5 @@
 body {
-    background-image: url('logo-removebg-preview.png'); /* Corrija o caminho */
+    background-image: url('imagem-menu.jpg'); /* Corrija o caminho */
     background-repeat: no-repeat; 
     background-position: center;
     
@@ -20,7 +20,7 @@ body {
             background-color: #007bff;
             border: none;
             transition: background-color 0.3s ease;
-            margin-top: 500px; /* Ajusta a margem superior para 500 pixels */
+            margin-top: 20px; /* Ajuste a margem para algo mais razoável */
         }
         
         .btn-primary:hover {

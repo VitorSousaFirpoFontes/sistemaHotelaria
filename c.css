@@ -1,0 +1,73 @@
+/* estiloPlanilha.css */
+
+/* Estilo para o corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para o título */
+h1 {
+    text-align: center;
+    color: #4CAF50;
+    margin-bottom: 30px;
+}
+
+/* Estilo para os filtros */
+.filtros {
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Estilo para os labels e selects dentro dos filtros */
+.filtros label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* Estilo para as tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Estilo para as células da tabela */
+th, td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+/* Estilo para os cabeçalhos da tabela */
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Estilo para as células com reservas */
+td[style*="background-color: #ffd700"] {
+    background-color: #ffd700;
+    color: #000;
+    font-weight: bold;
+}
+
+/* Estilo para o botão */
+.btn {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    text-align: center;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}

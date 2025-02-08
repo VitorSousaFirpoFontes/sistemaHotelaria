@@ -2,7 +2,7 @@
 
 $server="localhost";
 $user="root";
-$pass="cimatec";
+$pass="1234";
 $bd="hotel";
 // Criar conexão
 $conn= mysqli_connect($server, $user, $pass, $bd);
