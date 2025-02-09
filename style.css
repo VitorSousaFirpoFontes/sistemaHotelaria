@@ -1,18 +1,20 @@
 /* Estilo para o corpo da página */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4; /* Fundo claro */
-    color: #333;
+    background-color: #007bff; /* Fundo azul */
+    color: #fff; /* Mudando o texto para branco para melhor contraste */
     margin: 0;
     padding: 0;
+    font-weight: 600; /* Aumenta o peso da fonte para tornar o texto mais forte */
 }
 
 /* Estilo para o título */
 h1 {
     text-align: center;
-    color: #333; /* Cor neutra */
+    color: #fff; /* Cor do texto do título em branco */
     margin-bottom: 30px;
-    font-size: 24px; /* Ajuste para título mais formal */
+    font-size: 36px; /* Aumentando o tamanho da fonte para tornar o título mais impactante */
+    font-weight: 700; /* Deixa o título mais encorpado */
 }
 
 /* Estilo para os filtros */
@@ -23,26 +25,28 @@ h1 {
 
 /* Estilo para os labels e selects dentro dos filtros */
 .filtros label {
-    font-weight: bold;
+    font-weight: 600; /* Aumenta o peso da fonte dos labels */
     margin-right: 10px;
-    color: #555; /* Cor mais suave */
+    color: #fff; /* Cor dos textos em branco */
+    font-size: 18px; /* Aumenta o tamanho da fonte */
 }
 
 /* Estilo para os selects de mês e ano */
 .filtros select {
-    padding: 10px;
+    padding: 12px;
     font-size: 16px;
     width: 150px;
     border-radius: 4px;
     border: 1px solid #ccc;
     background-color: white;
     color: #333;
+    font-weight: 500; /* Aumenta o peso da fonte para os selects */
 }
 
 /* Estilo para os selects (com foco) */
 .filtros select:focus {
     outline: none;
-    border-color: #888; /* Cor mais suave no foco */
+    border-color: #888;
 }
 
 /* Estilo para as tabelas */
@@ -55,19 +59,21 @@ table {
 /* Estilo para as células da tabela */
 th, td {
     text-align: center;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ddd;
+    font-weight: 500; /* Aumenta o peso da fonte para as células */
 }
 
 /* Estilo para os cabeçalhos da tabela */
 th {
-    background-color: #f1f1f1; /* Cor de fundo mais clara */
+    background-color: #f1f1f1;
     color: #333;
+    font-weight: 700; /* Cabeçalhos mais encorpados */
 }
 
-/* Estilo para as células com destaque (exemplo de reserva) */
+/* Estilo para as células com destaque */
 td[style*="background-color: #ffd700"] {
-    background-color: #e0e0e0; /* Cor de fundo neutra */
+    background-color: #e0e0e0;
     color: #333;
     font-weight: bold;
 }
@@ -78,14 +84,15 @@ td[style*="background-color: #ffd700"] {
     width: 200px;
     margin: 20px auto;
     text-align: center;
-    padding: 10px;
-    background-color: #ccc; /* Cor neutra */
-    color: #333;
+    padding: 12px;
+    background-color: #28a745; /* Botão com cor mais vibrante */
+    color: white;
     border-radius: 4px;
     text-decoration: none;
     border: 1px solid #ddd;
+    font-weight: 600; /* Aumenta o peso da fonte do botão */
 }
 
 .btn:hover {
-    background-color: #bbb; /* Tom mais escuro no hover */
+    background-color: #218838; /* Cor do botão quando em hover */
 }

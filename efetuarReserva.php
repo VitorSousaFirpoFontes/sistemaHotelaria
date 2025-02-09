@@ -44,6 +44,11 @@
             </div>
 
             <div class="form-group">
+                <label for="valor_diaria">Valor da diária (R$):</label>
+                <input class="form-control" type="number" id="valor_diaria" name="valor_diaria" required min="0" step="0.01">
+            </div>
+
+            <div class="form-group">
                 <label for="observacoes">Observações (opcional):</label>
                 <textarea class="form-control" id="observacoes" name="observacoes" rows="3"></textarea>
             </div>

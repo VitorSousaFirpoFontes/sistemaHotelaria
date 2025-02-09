@@ -18,10 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data_checkout = $_POST['data_checkout'] ?? '';
     $numero_quarto = $_POST['numero_quarto'] ?? '';
     $tipo_quarto = $_POST['tipo_quarto'] ?? '';
+    $valor_diaria = $_POST['valor_diaria'] ?? ''; 
     $observacoes = $_POST['observacoes'] ?? '';
 
     // Prepara a consulta SQL para inserir os dados
-    $sql = "INSERT INTO Reservas (nome_cliente, data_checkin, data_checkout, numero_quarto, tipo_quarto, observacoes) VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO Reservas (nome_cliente, data_checkin, data_checkout, numero_quarto, tipo_quarto, valor_diaria, observacoes) VALUES (?, ?, ?, ?, ?, ?, ?)";
     
     // Usa prepared statement para evitar SQL injection
     $stmt = $conn->prepare($sql);
@@ -31,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Usa bind_param para associar os parâmetros
-    $stmt->bind_param("ssssss", $nome_cliente, $data_checkin, $data_checkout, $numero_quarto, $tipo_quarto, $observacoes);
+    $stmt->bind_param("sssssss", $nome_cliente, $data_checkin, $data_checkout, $numero_quarto, $tipo_quarto, $valor_diaria, $observacoes);
 
     // Executa a consulta e verifica o resultado
     if ($stmt->execute()) {
@@ -49,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <a href='index.php' class='btn btn-primary'>Ir para tela inicial</a>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
