@@ -15,3 +15,12 @@ CREATE TABLE reservas (
     observacoes TEXT,                   -- Observações adicionais (campo opcional)
     CONSTRAINT tipo_quarto_check CHECK (tipo_quarto IN ('standard', 'luxo', 'suite', 'familia'))
 );
+
+
+CREATE TABLE RelatoriosFinanceiros (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    lucro_total DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+    despesas_totais DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+    lucro_liquido DECIMAL(10,2) GENERATED ALWAYS AS (lucro_total - despesas_totais) STORED,
+    data_registro DATE NOT NULL DEFAULT (CURRENT_DATE)
+);

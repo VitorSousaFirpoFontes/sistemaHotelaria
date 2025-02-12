@@ -1,15 +1,32 @@
+<?php
+include 'conexao.php';
+
+// Busca o valor total diretamente do banco de dados
+$sql = "SELECT SUM(valor_total) AS valor_total FROM RelatoriosFinanceiros";
+$result = $conn->query($sql);
+
+if ($result) {
+    $row = $result->fetch_assoc();
+    $valorTotal = $row['valor_total'] ? $row['valor_total'] : 0.00;
+} else {
+    $valorTotal = 0.00;
+}
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestão de Caixa - Hotel</title>
-    <!-- Link para o Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Estilos personalizados -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <style>
         body {
-            background-color: #007bff; /* Azul */
+            background-color: #007bff;
         }
         .card {
             margin-bottom: 20px;
@@ -31,19 +48,17 @@
         <h1 class="text-center my-4">Gestão de Caixa - Hotel</h1>
 
         <div class="row">
-            <!-- Card de Lucro Total -->
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Lucro Total</h5>
+                        <h5>Valor Total</h5>
                     </div>
                     <div class="card-body">
-                        <h3 class="text-center">R$ 50.000,00</h3>
+                        <h3 class="text-center" id="valorTotal">R$ <?= number_format($valorTotal, 2, ',', '.') ?></h3>
                     </div>
                 </div>
             </div>
 
-            <!-- Card de Despesas -->
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header">
@@ -55,7 +70,6 @@
                 </div>
             </div>
 
-            <!-- Card de Lucro Líquido -->
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header">
@@ -69,7 +83,6 @@
         </div>
 
         <div class="row">
-            <!-- Card de Reservas -->
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
@@ -81,7 +94,6 @@
                 </div>
             </div>
 
-            <!-- Card de Check-ins e Check-outs -->
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
@@ -103,7 +115,6 @@
             </div>
         </div>
 
-        <!-- Tabela de Transações -->
         <div class="card mt-4">
             <div class="card-header">
                 <h5>Transações Recentes</h5>
@@ -139,7 +150,18 @@
         </div>
     </div>
 
-    <!-- Scripts do Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function atualizarValor() {
+            $.ajax({
+                url: 'atualizarValor.php',
+                type: 'GET',
+                success: function(response) {
+                    $('#valorTotal').text('R$ ' + response);
+                }
+            });
+        }
+
+        setInterval(atualizarValor, 10000);
+    </script>
 </body>
 </html>
