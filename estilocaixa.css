@@ -1,0 +1,96 @@
+/* estilocaixa.css - Versão com Headings Pretos */
+:root {
+    --primary-color: #2A5C8B;
+    --secondary-color: #4CAF50;
+    --accent-color: #FFC107;
+    --background-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --text-color: #2d3748;
+    --heading-color: #000000; /* Nova variável para cor dos títulos */
+}
+
+/* Adicione esta regra para todos os headings */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color) !important;
+    font-weight: 600;
+}
+
+/* Mantenha o estilo específico do h1 se necessário */
+h1 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.5rem !important;
+    font-size: 2.5rem;
+}
+
+/* Ajuste para manter a cor primária nos valores métricos */
+.metric-value {
+    color: var(--primary-color) !important; /* Mantém a cor azul nos valores */
+}
+
+/* ... (mantenha o restante do CSS original) ... */
+body {
+    background: var(--background-gradient);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    color: var(--text-color); /* Adicionado cor de texto geral */
+}
+
+.container {
+    padding: 2rem;
+    max-width: 1400px;
+}
+
+h1 {
+    color: var(--primary-color);
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.5rem !important; /* Aumentado espaçamento inferior */
+}
+
+/* Ajustes nas cards */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(255, 255, 255, 0.97); /* Aumentada opacidade do fundo */
+    backdrop-filter: blur(10px);
+    margin-bottom: 1.5rem; /* Espaço entre as cards */
+    color: var(--text-color); /* Cor do texto garantida */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    background: var(--primary-color);
+    color: white !important;
+    border-radius: 15px 15px 0 0 !important;
+    padding: 1.5rem; /* Aumentado padding */
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.card-body {
+    padding: 1.8rem; /* Aumentado padding interno */
+}
+
+/* Ajustes no grid */
+.row {
+    gap: 1.5rem 0; /* Espaço vertical entre linhas */
+}
+
+.col-md-4, .col-md-6 {
+    padding: 0 1rem; /* Espaço entre colunas */
+}
+
+.metric-value {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0.5rem 0;
+}
+
+/* ... (mantido o restante do CSS original) ... */

@@ -1,62 +1,89 @@
 <?php
-include "conexao.php";
+include "conexao.php"; // Certifique-se de que este arquivo define a variável $conn (MySQLi)
 
-header('Content-Type: application/json');
+// Se a requisição for GET, retorna todos os itens em formato JSON
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $sql = "SELECT * FROM itens ORDER BY id DESC";
+    $resultado = $conn->query($sql);
 
-// CREATE
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'create') {
-    try {
-        $stmt = $pdo->prepare("INSERT INTO itens (nome, categoria, quantidade) VALUES (?, ?, ?)");
-        $stmt->execute([
-            htmlspecialchars($_POST['nome']),
-            htmlspecialchars($_POST['categoria']),
-            intval($_POST['quantidade'])
-        ]);
-        echo json_encode(['success' => true, 'message' => 'Item adicionado com sucesso!']);
-    } catch(PDOException $e) {
-        echo json_encode(['success' => false, 'message' => 'Erro ao adicionar item: ' . $e->getMessage()]);
+    $itens = [];
+    while ($row = $resultado->fetch_assoc()) {
+        $itens[] = $row;
     }
+
+    header('Content-Type: application/json');
+    echo json_encode($itens);
     exit;
 }
 
-// READ
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'read') {
-    try {
-        $stmt = $pdo->query("SELECT * FROM itens ORDER BY id DESC");
-        $itens = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        echo json_encode(['success' => true, 'data' => $itens]);
-    } catch(PDOException $e) {
-        echo json_encode(['success' => false, 'message' => 'Erro ao carregar itens: ' . $e->getMessage()]);
-    }
-    exit;
-}
+// Se a requisição for POST, verifica a ação solicitada
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // A variável 'acao' define qual operação será realizada:
+    // 'inserir', 'atualizar' ou 'deletar'
+    $acao = $_POST['acao'] ?? '';
 
-// UPDATE
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update') {
-    try {
-        $stmt = $pdo->prepare("UPDATE itens SET nome = ?, categoria = ?, quantidade = ? WHERE id = ?");
-        $stmt->execute([
-            htmlspecialchars($_POST['nome']),
-            htmlspecialchars($_POST['categoria']),
-            intval($_POST['quantidade']),
-            intval($_POST['id'])
-        ]);
-        echo json_encode(['success' => true, 'message' => 'Item atualizado com sucesso!']);
-    } catch(PDOException $e) {
-        echo json_encode(['success' => false, 'message' => 'Erro ao atualizar item: ' . $e->getMessage()]);
-    }
-    exit;
-}
+    // INSERÇÃO
+    if ($acao === 'inserir') {
+        $nome      = $_POST['nome'] ?? '';
+        $categoria = $_POST['categoria'] ?? '';
+        $quantidade= $_POST['quantidade'] ?? 0;
 
-// DELETE
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'delete') {
-    try {
-        $stmt = $pdo->prepare("DELETE FROM itens WHERE id = ?");
-        $stmt->execute([intval($_POST['id'])]);
-        echo json_encode(['success' => true, 'message' => 'Item excluído com sucesso!']);
-    } catch(PDOException $e) {
-        echo json_encode(['success' => false, 'message' => 'Erro ao excluir item: ' . $e->getMessage()]);
+        $sql = "INSERT INTO itens (nome, categoria, quantidade) VALUES (?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) {
+            die("Erro ao preparar a consulta: " . $conn->error);
+        }
+        $stmt->bind_param("ssi", $nome, $categoria, $quantidade);
+
+        if ($stmt->execute()) {
+            echo "inserido";
+        } else {
+            echo "erro: " . $stmt->error;
+        }
+        $stmt->close();
     }
+
+    // ATUALIZAÇÃO
+    elseif ($acao === 'atualizar') {
+        $id        = $_POST['id'] ?? 0;
+        $nome      = $_POST['nome'] ?? '';
+        $categoria = $_POST['categoria'] ?? '';
+        $quantidade= $_POST['quantidade'] ?? 0;
+
+        $sql = "UPDATE itens SET nome = ?, categoria = ?, quantidade = ? WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) {
+            die("Erro ao preparar a consulta: " . $conn->error);
+        }
+        $stmt->bind_param("ssii", $nome, $categoria, $quantidade, $id);
+
+        if ($stmt->execute()) {
+            echo "atualizado";
+        } else {
+            echo "erro: " . $stmt->error;
+        }
+        $stmt->close();
+    }
+
+    // EXCLUSÃO
+    elseif ($acao === 'deletar') {
+        $id = $_POST['id'] ?? 0;
+
+        $sql = "DELETE FROM itens WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) {
+            die("Erro ao preparar a consulta: " . $conn->error);
+        }
+        $stmt->bind_param("i", $id);
+
+        if ($stmt->execute()) {
+            echo "deletado";
+        } else {
+            echo "erro: " . $stmt->error;
+        }
+        $stmt->close();
+    }
+
     exit;
 }
 ?>

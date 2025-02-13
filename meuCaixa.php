@@ -21,27 +21,11 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestão de Caixa - Hotel</title>
+    <link rel="stylesheet" href="estilocaixa.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <style>
-        body {
-            background-color: #007bff;
-        }
-        .card {
-            margin-bottom: 20px;
-        }
-        .card-header {
-            background-color: #6c757d;
-            color: white;
-        }
-        .card-body {
-            background-color: #ffffff;
-        }
-        .container {
-            margin-top: 30px;
-        }
-    </style>
+   
 </head>
 <body>
     <div class="container">
@@ -76,7 +60,7 @@ $conn->close();
                         <h5>Lucro Líquido</h5>
                     </div>
                     <div class="card-body">
-                        <h3 class="text-center">R$ 25.000,00</h3>
+                        <h3 class="text-center">indisponivel</h3>
                     </div>
                 </div>
             </div>
@@ -89,7 +73,7 @@ $conn->close();
                         <h5>Reservas Realizadas</h5>
                     </div>
                     <div class="card-body">
-                        <h3 class="text-center">350 Reservas</h3>
+                        <h3 class="text-center">indisponivel</h3>
                     </div>
                 </div>
             </div>
@@ -128,22 +112,8 @@ $conn->close();
                             <th>Valor</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>05/02/2025</td>
-                            <td>Pagamento de reserva</td>
-                            <td>R$ 500,00</td>
-                        </tr>
-                        <tr>
-                            <td>04/02/2025</td>
-                            <td>Pagamento de reserva</td>
-                            <td>R$ 600,00</td>
-                        </tr>
-                        <tr>
-                            <td>03/02/2025</td>
-                            <td>Pagamento de despesa</td>
-                            <td>-R$ 1.000,00</td>
-                        </tr>
+                    <tbody id="transacoesRecentes">
+                        <!-- Transações serão carregadas aqui -->
                     </tbody>
                 </table>
             </div>
@@ -161,7 +131,28 @@ $conn->close();
             });
         }
 
+        function atualizarTransacoes() {
+            $.ajax({
+                url: 'atualizarTransacoes.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    let tabela = '';
+                    response.forEach(function(transacao) {
+                        tabela += `<tr>
+                            <td>${transacao.data}</td>
+                            <td>${transacao.descricao}</td>
+                            <td>${transacao.valor}</td>
+                        </tr>`;
+                    });
+                    $('#transacoesRecentes').html(tabela);
+                }
+            });
+        }
+
         setInterval(atualizarValor, 10000);
+        setInterval(atualizarTransacoes, 10000);
+        atualizarTransacoes(); // Carrega ao abrir a página
     </script>
 </body>
 </html>

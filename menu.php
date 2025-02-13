@@ -23,6 +23,11 @@
             <img src="cifrao.png" alt="Meu Caixa">
             <span class="menu-text">Meu Caixa</span>
         </a>
+        <!-- Botão "Estoque" adicionado -->
+        <a href="estoque.php" class="menu-item">
+            <img src="ferramentas.png" alt="Estoque">
+            <span class="menu-text">Estoque</span>
+        </a>
     </div>
     <div class="conteudo">
         <h1>Bem-vindo ao BookSync</h1>
