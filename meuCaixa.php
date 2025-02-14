@@ -49,7 +49,7 @@ $conn->close();
                         <h5>Despesas Totais</h5>
                     </div>
                     <div class="card-body">
-                        <h3 class="text-center">R$ 25.000,00</h3>
+                        <h3 class="text-center">indisponivel</h3>
                     </div>
                 </div>
             </div>

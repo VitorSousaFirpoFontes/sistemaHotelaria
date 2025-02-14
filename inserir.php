@@ -2,10 +2,30 @@
 include "conexao.php";
 
 // Função para calcular o valor total
+include "conexao.php";
+
+// Função para calcular o valor total corrigida
 function calcularValorTotal($valor_diaria, $data_checkin, $data_checkout) {
-    $checkin_timestamp = strtotime($data_checkin);
-    $checkout_timestamp = strtotime($data_checkout);
-    $diferenca_dias = ($checkout_timestamp - $checkin_timestamp) / 86400; // Convertendo segundos para dias
+    try {
+        $checkin = new DateTime($data_checkin);
+        $checkout = new DateTime($data_checkout);
+    } catch (Exception $e) {
+        return 0; // Retorna 0 em caso de datas inválidas
+    }
+
+    // Define o horário para 00:00:00 para considerar apenas a diferença de dias
+    $checkin->setTime(0, 0, 0);
+    $checkout->setTime(0, 0, 0);
+
+    // Verifica se a data de checkout é anterior ou igual ao checkin
+    if ($checkout <= $checkin) {
+        return 0;
+    }
+
+    // Calcula a diferença de dias
+    $interval = $checkin->diff($checkout);
+    $diferenca_dias = $interval->days;
+
     return $valor_diaria * $diferenca_dias;
 }
 
@@ -21,6 +41,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Calculando o valor total
     $valor_total = calcularValorTotal($valor_diaria, $data_checkin, $data_checkout);
+
+    // Valida se o valor total é positivo
+    if ($valor_total <= 0) {
+        echo "<div class='alert alert-danger text-center' role='alert'>
+                Datas inválidas. O checkout deve ser após o checkin.
+              </div>";
+        exit;
+    }
 
     // Prepara a consulta SQL para inserir os dados
     $sql = "INSERT INTO Reservas (nome_cliente, data_checkin, data_checkout, numero_quarto, tipo_quarto, valor_diaria, valor_total, observacoes) 
@@ -51,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->close();
 }
 
+// Restante do código (leitura, HTML, scripts) permanece o mesmo
 // Leitura
 $sql_leitura = "SELECT * FROM Reservas";
 $resultado = $conn->query($sql_leitura);
