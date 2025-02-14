@@ -23,14 +23,22 @@ CREATE TABLE relatoriosfinanceiros (
     id_reserva INT NOT NULL,
     valor_diario DECIMAL(10, 2) NOT NULL,
     valor_total DECIMAL(10, 2) NOT NULL,
+    lucro_total DECIMAL(10, 2) NOT NULL DEFAULT 0, -- Adicionada a coluna lucro_total
     data_pagamento DATE NOT NULL,
     FOREIGN KEY (id_reserva) REFERENCES reservas(id)
 );
 
-
+-- Criação da tabela itens
 CREATE TABLE itens (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     categoria VARCHAR(50) NOT NULL,
     quantidade INT NOT NULL
 );
+
+-- Se já existir a tabela e precisar adicionar a coluna lucro_total posteriormente, use:
+ALTER TABLE relatoriosfinanceiros ADD COLUMN lucro_total DECIMAL(10,2) NOT NULL DEFAULT 0;
+
+-- Opcional: Atualizar os lucros caso precise calcular com base em outro critério
+UPDATE relatoriosfinanceiros 
+SET lucro_total = valor_total; -- Modifique essa linha se houver despesas a serem subtraídas
