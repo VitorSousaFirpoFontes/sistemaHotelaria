@@ -41,6 +41,50 @@ $conn->close();
 <body class="container mt-5">
   <h1>Controle de Reservas</h1>
 
+
+  <div class="filtros">
+    <form method="GET" action="">
+      <label for="mes">Mês:</label>
+      <select name="mes" id="mes">
+        <?php 
+        $mesesPortugues = [
+            1 => 'Janeiro',
+            2 => 'Fevereiro',
+            3 => 'Março',
+            4 => 'Abril',
+            5 => 'Maio',
+            6 => 'Junho',
+            7 => 'Julho',
+            8 => 'Agosto',
+            9 => 'Setembro',
+            10 => 'Outubro',
+            11 => 'Novembro',
+            12 => 'Dezembro'
+        ];
+        
+        for ($m = 0; $m < 12; $m++): 
+          $mesNumero = str_pad($m + 1, 2, '0', STR_PAD_LEFT);
+          $mesNome = $mesesPortugues[$m + 1];
+        ?>
+          <option value="<?= $m ?>" <?= $m == $mes ? 'selected' : '' ?>>
+            <?= "$mesNumero - $mesNome" ?>
+          </option>
+        <?php endfor ?>
+      </select>
+
+      <label for="ano">Ano:</label>
+      <select name="ano" id="ano">
+        <?php for ($a = date('Y') - 1; $a <= date('Y') + 1; $a++): ?>
+          <option value="<?= $a ?>" <?= $a == $ano ? 'selected' : '' ?>><?= $a ?></option>
+        <?php endfor ?>
+      </select>
+
+      <button type="submit" class="btn btn-primary">Atualizar</button>
+    </form>
+  </div>
+
+
+
   <table class="table table-bordered">
     <thead>
       <tr>

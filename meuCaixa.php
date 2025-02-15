@@ -160,8 +160,50 @@ $conn->close();
         </table>
       </div>
     </div>
+  </div>
+
+    <!-- Botão Adicionar Despesa NO FINAL -->
+    <div class="row mb-4">
+      <div class="col-12 text-center">
+        <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalDespesa">
+          Adicionar Despesa
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal Despesa -->
+    <div class="modal fade" id="modalDespesa" tabindex="-1" aria-labelledby="modalDespesaLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalDespesaLabel">Nova Despesa</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+          </div>
+          <div class="modal-body">
+            <form id="formDespesa">
+              <div class="mb-3">
+                <label class="form-label">Descrição</label>
+                <input type="text" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Valor</label>
+                <input type="number" step="0.01" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Data</label>
+                <input type="date" class="form-control" required>
+              </div>
+              <button type="submit" class="btn btn-success w-100">Salvar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
+
+
+
 
   <script>
     // Função para obter os filtros selecionados (mes e ano)
